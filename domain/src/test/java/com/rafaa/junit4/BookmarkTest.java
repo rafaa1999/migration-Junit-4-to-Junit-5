@@ -4,6 +4,8 @@ import com.rafaa.bookmark.Bookmark;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+
+import static java.util.Collections.emptySet;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Set;
@@ -29,6 +31,28 @@ public class BookmarkTest {
        assertThat(createdBookmark.getTags()).isEqualTo(tags);
    }
 
+   @Test
+   public void should_not_create_invalid_url(){
+       //given
+       exception.expect(IllegalArgumentException.class);
+       //when
+       Bookmark.create("invalid_url","name",emptySet());
+   }
 
+   @Test
+   public void should_not_accept_an_empty_name(){
+       //given
+       exception.expect(IllegalArgumentException.class);
+       //when
+       Bookmark.create("invalid_url","",emptySet());
+   }
+
+   @Test
+   public void should_not_accept_an_blank_name(){
+       //given
+       exception.expect(IllegalArgumentException.class);
+       //when
+       Bookmark.create("invalid_url","  ",emptySet());
+   }
 
 }
