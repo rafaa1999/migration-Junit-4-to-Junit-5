@@ -2,6 +2,8 @@ package com.rafaa.junit5;
 
 import com.rafaa.bookmark.Bookmark;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.DisplayNameGeneration;
+import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -16,9 +18,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+//@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 public class BookmarkTest implements EqualityTest<Bookmark>{
 
-    @ParameterizedTest(name = "{1}")
+    @ParameterizedTest(name = "for {0} with name {1}")
     @CsvSource({
             "http://www.test.com, Some name, tag",
             "http://www.test.com/path, Some other name, another-tag"
